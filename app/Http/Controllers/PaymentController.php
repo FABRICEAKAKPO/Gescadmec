@@ -87,7 +87,7 @@ class PaymentController extends Controller
             // Créer une inscription par défaut si aucune n'existe
             $enrollment = Enrollment::create([
                 'student_id' => $student->id,
-                'course_id' => 1, // Cours par défaut (à adapter selon vos besoins)
+                'course_id' => 1, // Cours par défaut 
                 'level' => 'A1', // Niveau par défaut
                 'date_debut' => now(),
                 'date_fin' => now()->addMonths(3),

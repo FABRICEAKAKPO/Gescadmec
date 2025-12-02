@@ -4,13 +4,13 @@
 @section('content')
 <h2>Liste des Paiements</h2>
 
-<a href="{{ route('payments.create') }}" class="btn btn-success mb-3">+ Nouveau paiement</a>
+<a href="{{ route('payments.create') }}" class="bouton bouton-succes marge-bas-3">+ Nouveau paiement</a>
 
 {{-- Formulaire de filtres des paiements --}}
-<form method="GET" action="{{ route('payments.index') }}" class="row g-2 mb-3">
-    <div class="col-md-3">
-        <label class="form-label">Étudiant</label>
-        <select name="student_id" class="form-select">
+<form method="GET" action="{{ route('payments.index') }}" class="ligne gouttiere-2 marge-bas-3">
+    <div class="colonne-md-3">
+        <label class="etiquette-formulaire">Étudiant</label>
+        <select name="student_id" class="champ-formulaire">
             <option value="">Tous</option>
             @foreach($students as $stu)
                 <option value="{{ $stu->id }}" {{ request('student_id') == $stu->id ? 'selected' : '' }}>
@@ -19,9 +19,9 @@
             @endforeach
         </select>
     </div>
-    <div class="col-md-3">
-        <label class="form-label">Cours</label>
-        <select name="course_id" class="form-select">
+    <div class="colonne-md-3">
+        <label class="etiquette-formulaire">Cours</label>
+        <select name="course_id" class="champ-formulaire">
             <option value="">Tous</option>
             @foreach($courses as $c)
                 <option value="{{ $c->id }}" {{ request('course_id') == $c->id ? 'selected' : '' }}>
@@ -30,39 +30,39 @@
             @endforeach
         </select>
     </div>
-    <div class="col-md-2">
-        <label class="form-label">Méthode</label>
-        <select name="method" class="form-select">
+    <div class="colonne-md-2">
+        <label class="etiquette-formulaire">Méthode</label>
+        <select name="method" class="champ-formulaire">
             <option value="">Toutes</option>
             @foreach($methods as $m)
                 <option value="{{ $m }}" {{ request('method') == $m ? 'selected' : '' }}>{{ $m }}</option>
             @endforeach
         </select>
     </div>
-    <div class="col-md-2">
-        <label class="form-label">Du</label>
-        <input type="date" name="date_from" value="{{ request('date_from') }}" class="form-control" />
+    <div class="colonne-md-2">
+        <label class="etiquette-formulaire">Du</label>
+        <input type="date" name="date_from" value="{{ request('date_from') }}" class="champ-formulaire" />
     </div>
-    <div class="col-md-2">
-        <label class="form-label">Au</label>
-        <input type="date" name="date_to" value="{{ request('date_to') }}" class="form-control" />
+    <div class="colonne-md-2">
+        <label class="etiquette-formulaire">Au</label>
+        <input type="date" name="date_to" value="{{ request('date_to') }}" class="champ-formulaire" />
     </div>
-    <div class="col-12">
-        <button class="btn btn-primary">Filtrer</button>
-        <a href="{{ route('payments.index') }}" class="btn btn-outline-secondary">Réinitialiser</a>
+    <div class="colonne-12">
+        <button class="bouton bouton-primaire">Filtrer</button>
+        <a href="{{ route('payments.index') }}" class="bouton bouton-contour-secondaire">Réinitialiser</a>
     </div>
 </form>
 {{-- Alerte de succès avec lien direct vers le reçu, si disponible --}}
 @if(session('receipt_url'))
-    <div class="alert alert-success">
-        Paiement enregistré. <a href="{{ session('receipt_url') }}" target="_blank" class="alert-link">Ouvrir le reçu</a>
+    <div class="alerte alerte-succes">
+        Paiement enregistré. <a href="{{ session('receipt_url') }}" target="_blank" class="alerte-lien">Ouvrir le reçu</a>
     </div>
 @elseif(session('success'))
-    <div class="alert alert-success">{{ session('success') }}</div>
+    <div class="alerte alerte-succes">{{ session('success') }}</div>
 @endif
 
-<table class="table table-bordered bg-white">
-    <thead class="table-light">
+<table class="tableau-donnees bg-blanc">
+    <thead class="entete-tableau">
         <tr>
             <th>Numéro reçu</th>
             <th>Étudiant</th>
@@ -77,7 +77,7 @@
 {{-- Tableau des paiements; chaque ligne affiche les relations (étudiant, cours) --}}
     <tbody>
         @forelse($payments as $payment)
-        <tr class="{{ $loop->index >= 5 ? 'd-none js-pay-row' : '' }}">
+        <tr class="ligne-tableau {{ $loop->index >= 5 ? 'cacher js-paiement-ligne' : '' }}">
             <td>{{ $payment->receipt_number }}</td>
             <td>{{ $payment->enrollment->student->first_name }} {{ $payment->enrollment->student->last_name }}</td>
             <td>{{ $payment->enrollment->course->name ?? 'N/A' }}</td>
@@ -87,18 +87,18 @@
             <td><span class="badge bg-success">Payé</span></td>
             {{-- Bouton pour ouvrir le reçu du paiement --}}
             <td>
-                <a href="{{ route('payments.receipt', $payment->id) }}" target="_blank" class="btn btn-sm btn-primary">Voir reçu</a>
+                <a href="{{ route('payments.receipt', $payment->id) }}" target="_blank" class="bouton bouton-petit bouton-primaire">Voir reçu</a>
             </td>
         </tr>
         @empty
         <tr>
-            <td colspan="7" class="text-center text-muted">Aucun paiement enregistré.</td>
+            <td colspan="7" class="texte-centre texte-muet">Aucun paiement enregistré.</td>
         </tr>
         @endforelse
     </tbody>
 </table>
 @if($payments->count() > 5)
-    <button class="btn btn-sm btn-outline-primary" id="toggle-pay">Voir plus</button>
+    <button class="bouton bouton-petit bouton-contour-primaire" id="basculer-paiement">Voir plus</button>
 @endif
 
 {{-- Pagination avec conservation des filtres via appends() --}}
@@ -107,11 +107,11 @@
 {{-- Script pour afficher/masquer des lignes de plus de 5 --}}
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  var btnPay = document.getElementById('toggle-pay');
+  var btnPay = document.getElementById('basculer-paiement');
   if (btnPay) {
     btnPay.addEventListener('click', function() {
-      var rows = document.querySelectorAll('.js-pay-row');
-      rows.forEach(function(r){ r.classList.toggle('d-none'); });
+      var rows = document.querySelectorAll('.js-paiement-ligne');
+      rows.forEach(function(r){ r.classList.toggle('cacher'); });
       btnPay.textContent = btnPay.textContent === 'Voir plus' ? 'Voir moins' : 'Voir plus';
     });
   }

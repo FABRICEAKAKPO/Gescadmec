@@ -133,48 +133,48 @@
         }
         
         /* Tableau des détails */
-        .payment-details {
+        .details-paiement {
             margin: 20px 0;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             border-radius: 8px;
             padding: 2px;
         }
         
-        .payment-details-inner {
+        .interieur-details-paiement {
             background: white;
             border-radius: 6px;
             padding: 15px;
         }
         
-        .detail-row {
+        .ligne-detail {
             width: 100%;
             padding: 10px 0;
             border-bottom: 1px dashed #e9ecef;
         }
         
-        .detail-row:last-child {
+        .ligne-detail:last-child {
             border-bottom: none;
         }
         
-        .detail-row td {
+        .ligne-detail td {
             padding: 3px 0;
         }
         
-        .detail-label {
+        .etiquette-detail {
             font-weight: 600;
             color: #555;
             font-size: 12px;
             width: 60%;
         }
         
-        .detail-value {
+        .valeur-detail {
             text-align: right;
             font-size: 14px;
             color: #333;
             width: 40%;
         }
         
-        .amount-row {
+        .ligne-montant {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             margin: -2px;
             margin-top: 15px;
@@ -183,109 +183,56 @@
             color: white;
         }
         
-        .amount-row td {
+        .ligne-montant td {
             color: white;
             padding: 3px 0;
         }
         
-        .amount-row .detail-label {
+        .ligne-montant .etiquette-detail {
             color: white;
             font-size: 16px;
             font-weight: 700;
         }
         
-        .amount-row .detail-value {
+        .ligne-montant .valeur-detail {
             color: white;
             font-size: 22px;
             font-weight: 700;
         }
         
         /* Pied de page */
-        .footer {
+        .pied-page {
             background: #f8f9fa;
-            padding: 20px 15px;
+            padding: 20px;
             text-align: center;
             border-top: 1px solid #e9ecef;
+            margin-top: 20px;
+            border-radius: 0 0 12px 12px;
         }
         
-        .footer-message {
-            font-size: 14px;
-            color: #667eea;
+        .message-pied-page {
+            color: #28a745;
             font-weight: 600;
             margin-bottom: 10px;
+            font-size: 16px;
         }
         
-        .footer-info {
-            font-size: 10px;
-            color: #777;
-            line-height: 1.4;
-        }
-        
-        .signature-section {
-            margin-top: 25px;
-            padding-top: 15px;
-            border-top: 1px dashed #ccc;
-        }
-        
-        .signature-box {
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-        }
-        
-        .signature-item {
-            width: 48%;
-            text-align: center;
-            padding: 10px 5px;
-        }
-        
-        .signature-line {
-            width: 150px;
-            height: 40px;
-            border-bottom: 1px solid #333;
-            margin: 15px auto 8px;
-        }
-        
-        .signature-label {
-            font-size: 11px;
-            color: #777;
-            font-weight: 600;
-        }
-        
-        /* Badge de statut */
-        .status-badge {
-            display: inline-block;
-            background: #28a745;
-            color: white;
-            padding: 4px 12px;
-            border-radius: 15px;
-            font-size: 11px;
-            font-weight: 600;
-            text-transform: uppercase;
-            margin-left: 8px;
-        }
-        
-        /* Bouton d'impression */
-        .print-btn {
-            position: fixed;
-            top: 15px;
-            right: 15px;
-            background: #ffd700;
-            color: #333;
-            border: none;
-            border-radius: 15px;
-            padding: 8px 12px;
-            font-weight: 600;
+        .info-pied-page {
+            color: #6c757d;
             font-size: 12px;
-            cursor: pointer;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-            z-index: 1000;
+            line-height: 1.5;
         }
         
+        /* Responsive Print */
         @media print {
-            .print-btn { display: none; }
-            body { background: white; padding: 0; }
-            .receipt-container { box-shadow: none; }
+            .bouton-impression { display: none; }
+            body { 
+                background: white; 
+                padding: 0; 
+            }
+            .conteneur-reçu { 
+                box-shadow: none; 
+            }
         }
         
         @page { 
@@ -298,7 +245,7 @@
                 width: 210mm; 
                 height: 297mm; 
             }
-            .receipt-container { 
+            .conteneur-reçu { 
                 max-width: 100%; 
                 margin: 0; 
                 box-shadow: none; 
@@ -306,50 +253,50 @@
                 page-break-inside: avoid; 
                 height: auto;
             }
-            .header, .receipt-body { 
+            .entete, .corps-reçu { 
                 padding: 12px 15px; 
             }
-            .payment-details, .payment-details-inner, .info-grid, .detail-row, .amount-row, .signature-section, .footer { 
+            .details-paiement, .interieur-details-paiement, .grille-info, .ligne-detail, .ligne-montant, .section-signature, .pied-page { 
                 break-inside: avoid; 
                 page-break-inside: avoid; 
             }
-            .payment-details-inner { 
+            .interieur-details-paiement { 
                 padding: 12px; 
             }
-            .detail-row { 
+            .ligne-detail { 
                 padding: 8px 0; 
             }
-            .amount-row { 
+            .ligne-montant { 
                 margin-top: 10px; 
                 padding: 12px 15px; 
             }
-            .signature-section { 
+            .section-signature { 
                 margin-top: 12px; 
                 padding-top: 8px; 
             }
-            .header h1 { 
+            .entete h1 { 
                 font-size: 20px; 
             }
-            .receipt-title h2 { 
+            .titre-reçu h2 { 
                 font-size: 18px; 
             }
-            .receipt-number { 
+            .numero-reçu { 
                 padding: 4px 10px; 
                 font-size: 11px; 
             }
-            .detail-label { 
+            .etiquette-detail { 
                 font-size: 11px; 
             }
-            .detail-value { 
+            .valeur-detail { 
                 font-size: 12px; 
             }
-            .amount-row .detail-label { 
+            .ligne-montant .etiquette-detail { 
                 font-size: 14px; 
             }
-            .amount-row .detail-value { 
+            .ligne-montant .valeur-detail { 
                 font-size: 18px; 
             }
-            .signature-line {
+            .ligne-signature {
                 width: 120px;
                 height: 30px;
             }
@@ -405,63 +352,63 @@
             </table>
             
             <!-- Détails du paiement -->
-            <div class="payment-details">
-                <div class="payment-details-inner">
-                    <table class="detail-row" style="width: 100%; border-collapse: collapse;">
+            <div class="details-paiement">
+                <div class="interieur-details-paiement">
+                    <table class="ligne-detail" style="width: 100%; border-collapse: collapse;">
                         <tr>
-                            <td class="detail-label">Méthode de paiement</td>
-                            <td class="detail-value">{{ $payment->method ?? 'Espèces' }}</td>
+                            <td class="etiquette-detail">Méthode de paiement</td>
+                            <td class="valeur-detail">{{ $payment->method ?? 'Espèces' }}</td>
                         </tr>
                     </table>
-                    <table class="detail-row" style="width: 100%; border-collapse: collapse;">
+                    <table class="ligne-detail" style="width: 100%; border-collapse: collapse;">
                         <tr>
-                            <td class="detail-label">Montant total de l'inscription</td>
-                            <td class="detail-value">{{ number_format($payment->enrollment->total_amount, 0, ',', ' ') }} FCFA</td>
+                            <td class="etiquette-detail">Montant total de l'inscription</td>
+                            <td class="valeur-detail">{{ number_format($payment->enrollment->total_amount, 0, ',', ' ') }} FCFA</td>
                         </tr>
                     </table>
-                    <table class="detail-row" style="width: 100%; border-collapse: collapse;">
+                    <table class="ligne-detail" style="width: 100%; border-collapse: collapse;">
                         <tr>
                             <!-- Montant déjà payé cumulatif (somme des paiements liés) -->
-                            <td class="detail-label">Total déjà payé</td>
-                            <td class="detail-value">{{ number_format($payment->enrollment->payments->sum('amount'), 0, ',', ' ') }} FCFA</td>
+                            <td class="etiquette-detail">Total déjà payé</td>
+                            <td class="valeur-detail">{{ number_format($payment->enrollment->payments->sum('amount'), 0, ',', ' ') }} FCFA</td>
                         </tr>
                     </table>
-                    <table class="detail-row" style="width: 100%; border-collapse: collapse; border-bottom: none;">
+                    <table class="ligne-detail" style="width: 100%; border-collapse: collapse; border-bottom: none;">
                         <tr>
                             <!-- Reste à payer: total - somme_payée -->
-                            <td class="detail-label">Reste à payer</td>
-                            <td class="detail-value">{{ number_format($payment->enrollment->total_amount - $payment->enrollment->payments->sum('amount'), 0, ',', ' ') }} FCFA</td>
+                            <td class="etiquette-detail">Reste à payer</td>
+                            <td class="valeur-detail">{{ number_format($payment->enrollment->total_amount - $payment->enrollment->payments->sum('amount'), 0, ',', ' ') }} FCFA</td>
                         </tr>
                     </table>
                     
-                    <table class="amount-row" style="width: 100%; border-collapse: collapse;">
+                    <table class="ligne-montant" style="width: 100%; border-collapse: collapse;">
                         <tr>
-                            <td class="detail-label">MONTANT DE CE PAIEMENT</td>
-                            <td class="detail-value">{{ number_format($payment->amount, 0, ',', ' ') }} FCFA</td>
+                            <td class="etiquette-detail">MONTANT DE CE PAIEMENT</td>
+                            <td class="valeur-detail">{{ number_format($payment->amount, 0, ',', ' ') }} FCFA</td>
                         </tr>
                     </table>
                 </div>
             </div>
             
             <!-- Section signature -->
-            <div class="signature-section">
-                <div class="signature-box">
-                    <div class="signature-item">
-                        <div class="signature-line"></div>
-                        <div class="signature-label">Signature de l'étudiant</div>
+            <div class="section-signature">
+                <div class="boite-signature">
+                    <div class="element-signature">
+                        <div class="ligne-signature"></div>
+                        <div class="etiquette-signature">Signature de l'étudiant</div>
                     </div>
-                    <div class="signature-item">
-                        <div class="signature-line"></div>
-                        <div class="signature-label">Signature du responsable</div>
+                    <div class="element-signature">
+                        <div class="ligne-signature"></div>
+                        <div class="etiquette-signature">Signature du responsable</div>
                     </div>
                 </div>
             </div>
         </div>
         
         <!-- Pied de page -->
-        <div class="footer">
-            <div class="footer-message">✓ Merci pour votre paiement !</div>
-            <div class="footer-info">
+        <div class="pied-page">
+            <div class="message-pied-page">✓ Merci pour votre paiement !</div>
+            <div class="info-pied-page">
                 Ce reçu est généré automatiquement et fait foi de paiement.<br>
                 Pour toute question, veuillez contacter l'administration.<br>
                 <strong>Académie de Langue</strong> - {{ now()->format('Y') }}
